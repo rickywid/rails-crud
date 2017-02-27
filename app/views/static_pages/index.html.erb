@@ -1,0 +1,12 @@
+<%= link_to "New Post", new_post_path, class:"btn btn-default" %>
+
+<% @post.each do |p| %>
+	<h3><%= p.title %></h3>
+	<h6>Posted by <%= p.user.email %></h6>
+	<p><%= p.body %></p>
+
+	<% if p.user == current_user %>
+	<%= link_to "Edit", edit_post_path(p), class:"btn btn-default" %>
+	<%= link_to "Delete", post_path(p), method: :delete, class:"btn btn-default", data: {confirm: "Are you sure?"} %>
+	<% end %>
+<% end %>
